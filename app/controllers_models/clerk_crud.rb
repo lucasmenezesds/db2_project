@@ -1,6 +1,6 @@
 require_relative '../../lib/crud_data'
 
-class Product < CRUDData
+class ClerkCrud < CRUDData
   def initialize(conn)
     @conn = conn
   end
@@ -24,9 +24,9 @@ class Product < CRUDData
     description = check_if_data_is_valid(received_hash, :description)
     price = check_if_data_is_valid(received_hash, :price)
 
-    puts "Creating a CLERK Product #{name}"
+    puts "Creating a CLERK Product #{id}"
     # TODO: CHECK QUERY
-    insert_sql = 'INSERT INTO CLERK_PRODUCT ( ID, DESCRIPTION, PRICE) VALUES ( :1, :2, :3);'
+    insert_sql = 'INSERT INTO CLERK_PRODUCT ( ID, DESCRIPTION, PRICE) VALUES ( :1, :2, :3)'
     insert_stmt = @conn.prepare_statement(insert_sql)
     insert_stmt.set_int 1, id
     insert_stmt.set_string 2, description
@@ -69,7 +69,7 @@ class Product < CRUDData
     price = check_if_data_is_valid(received_hash, :price)
 
     # TODO: CHECK QUERY
-    sql_query = 'UPDATE CLERK_PRODUCT SET ID = :1, DESCRIPTION = :2, PRICE = :3 WHERE ID = :1;'
+    sql_query = 'UPDATE CLERK_PRODUCT SET ID = :1, DESCRIPTION = :2, PRICE = :3 WHERE ID = :1'
     query_stmt = @conn.prepare_statement(sql_query)
     query_stmt.set_int 1, id
     query_stmt.set_string 2, description
@@ -85,7 +85,7 @@ class Product < CRUDData
 
   def delete_product(received_id)
     # TODO: CHECK QUERY
-    delete_stmt = conn.prepare_statement 'DELETE FROM CLERK_PRODUCT WHERE ID = :1;'
+    delete_stmt = conn.prepare_statement 'DELETE FROM CLERK_PRODUCT WHERE ID = :1'
     delete_stmt.set_int 1, received_id
     delete_stmt.execute_update
     @conn.commit
@@ -101,9 +101,9 @@ class Product < CRUDData
     quantity = check_if_data_is_valid(received_hash, :quantity)
     seller = check_if_data_is_valid(received_hash, :seller)
 
-    puts "Creating a CLERK Storage #{name}"
+    puts "Creating a CLERK Storage #{product_id}"
     # TODO: CHECK QUERY
-    insert_sql = 'INSERT INTO CLERK_STORAGE ( PRODUCT_ID, QUANTITY) VALUES ( :1, :2);'
+    insert_sql = 'INSERT INTO CLERK_STORAGE ( PRODUCT_ID, QUANTITY) VALUES ( :1, :2)'
     insert_stmt = @conn.prepare_statement(insert_sql)
     insert_stmt.set_int 1, product_id
     insert_stmt.set_int 2, quantity
@@ -146,7 +146,7 @@ class Product < CRUDData
     seller = check_if_data_is_valid(received_hash, :seller)
 
     # TODO: CHECK QUERY
-    sql_query = 'UPDATE CLERK_STORAGE SET PRODUCT_ID = :1, QUANTITY = :2 WHERE PRODUCT_ID = :1;'
+    sql_query = 'UPDATE CLERK_STORAGE SET PRODUCT_ID = :1, QUANTITY = :2 WHERE PRODUCT_ID = :1'
     query_stmt = @conn.prepare_statement(sql_query)
     query_stmt.set_int 1, product_id
     query_stmt.set_int 2, quantity
@@ -162,7 +162,7 @@ class Product < CRUDData
 
   def delete_storage(received_id)
     # TODO: CHECK QUERY
-    delete_stmt = conn.prepare_statement 'DELETE FROM CLERK_STORAGE WHERE PRODUCT_ID = :1;'
+    delete_stmt = conn.prepare_statement 'DELETE FROM CLERK_STORAGE WHERE PRODUCT_ID = :1'
     delete_stmt.set_int 1, received_id
     delete_stmt.execute_update
     @conn.commit

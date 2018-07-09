@@ -23,10 +23,10 @@ class Menu
 
   def loop_of_actions
     @prompt.select('What do you want to work with?') do |menu|
-      menu.choice 'Auditing', :audit
+      # menu.choice 'Auditing', :audit
       menu.choice 'Products', :product
       menu.choice 'Storage', :storage
-      menu.choice 'Users', :user
+      # menu.choice 'Users', :user
       menu.choice 'Quit', :quit
     end
   end
@@ -41,7 +41,7 @@ class Menu
   end
 
   def ask_storage_data
-    prompt.collect do
+    @prompt.collect do
       key(:seller).ask('Seller?', default: 'Standart_Seller')
       key(:product_id).ask('Product ID?', convert: :int)
       key(:quantity).ask('Quantity?', convert: :int)
@@ -49,7 +49,7 @@ class Menu
   end
 
   def ask_product_data
-    prompt.collect do
+    @prompt.collect do
       key(:id).ask('Product ID?', convert: :int)
       key(:description).ask('Description?')
       key(:price).ask('Price?', convert: :float)

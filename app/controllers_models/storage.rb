@@ -10,9 +10,9 @@ class Storage < CRUDData
     quantity = check_if_data_is_valid(received_hash, :quantity)
     seller = check_if_data_is_valid(received_hash, :seller)
 
-    puts "Creating a Storage #{name}"
+    puts "Creating a Storage #{product_id}"
     # TODO: CHECK QUERY
-    insert_sql = 'INSERT INTO STORAGE ( PRODUCT_ID, QUANTITY, SELLER) VALUES ( :1, :2, :3);'
+    insert_sql = 'INSERT INTO STORAGE ( PRODUCT_ID, QUANTITY, SELLER) VALUES ( :1, :2, :3)'
     insert_stmt = @conn.prepare_statement(insert_sql)
     insert_stmt.set_int 1, product_id
     insert_stmt.set_int 2, quantity
@@ -55,7 +55,7 @@ class Storage < CRUDData
     seller = check_if_data_is_valid(received_hash, :seller)
 
     # TODO: CHECK QUERY
-    sql_query = 'UPDATE STORAGE SET PRODUCT_ID = :1, QUANTITY = :2, SELLER = :3 WHERE PRODUCT_ID = :1;'
+    sql_query = 'UPDATE STORAGE SET PRODUCT_ID = :1, QUANTITY = :2, SELLER = :3 WHERE PRODUCT_ID = :1'
     query_stmt = @conn.prepare_statement(sql_query)
     query_stmt.set_int 1, product_id
     query_stmt.set_int 2, quantity
@@ -71,7 +71,7 @@ class Storage < CRUDData
 
   def delete(received_id)
     # TODO: CHECK QUERY
-    delete_stmt = conn.prepare_statement 'DELETE FROM STORAGE WHERE PRODUCT_ID = :1;'
+    delete_stmt = conn.prepare_statement 'DELETE FROM STORAGE WHERE PRODUCT_ID = :1'
     delete_stmt.set_int 1, received_id
     delete_stmt.execute_update
     @conn.commit
