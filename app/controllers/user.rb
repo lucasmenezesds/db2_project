@@ -15,8 +15,8 @@ class User < CRUDData
     password = check_if_data_is_valid(received_hash, :password)
 
     puts "Creating the User #{name}"
-    # TODO: FIX QUERY
-    insert_sql = 'create user :1 identified by 'senha' profile :2'
+    # TODO: Query atualizada verificar que as informações estão sendo enviadas corretamente :1 = Usuario, :2 = Perfil, :3 = Senha.
+    insert_sql = 'create user :1 identified by :3 profile :2'
     insert_stmt = @conn.prepare_statement(insert_sql)
     insert_stmt.set_string 1, name
     insert_stmt.set_string 2, password
@@ -33,7 +33,7 @@ class User < CRUDData
   def read(name, user_type)
     check_permission(user_type)
 
-    # TODO: CHECK QUERY
+    # TODO: Query atualizada tinha uma virgula fora do lugar
     query_part = if name.nil?
                    add_username_to_query(name)
                  else
@@ -55,8 +55,8 @@ class User < CRUDData
   end
 
   def update(username, role)
-    # TODO: FIX QUERY
-    sql_query = 'alter user :1 identified by 'new_senha' profile :2'
+    # TODO: Query atualizada verificar que as informações estão sendo enviadas corretamente :1 = Usuario :2 = Perfil :3 = Senha
+    sql_query = 'alter user :1 identified by :3 profile :2'
     query_stmt = @conn.prepare_statement(sql_query)
     query_stmt.set_string 1, username
     query_stmt.set_string 2, role
@@ -85,7 +85,7 @@ class User < CRUDData
     #   end;
     # EOF
 
-    # TODO: FIX QUERY
+    # TODO: Query atualizada
     puts 'drop user :1'
     delete_stmt = conn.prepare_call PLSQL_BLOCK_PROCEDURE_CALL
     delete_stmt.set_int 1, 281
