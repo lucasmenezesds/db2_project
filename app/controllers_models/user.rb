@@ -8,7 +8,7 @@ class User < CRUDData
   end
 
   def create(received_hash)
-    user_type = check_if_data_is_valid(received_hash, :user_type)
+    # user_type = check_if_data_is_valid(received_hash, :user_type)
     # check_permission(user_type)
     name = check_if_data_is_valid(received_hash, :name)
     password = check_if_data_is_valid(received_hash, :password)

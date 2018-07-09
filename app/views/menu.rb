@@ -25,18 +25,35 @@ class Menu
     @prompt.select('What do you want to work with?') do |menu|
       menu.choice 'Auditing', :audit
       menu.choice 'Products', :product
-      menu.choice 'Purchases', :purchase
+      menu.choice 'Storage', :storage
       menu.choice 'Users', :user
-      menu.choise 'Quit', :quit
+      menu.choice 'Quit', :quit
     end
   end
 
-  def show_crud_options
-    @prompt.select('Choose what you want to do..') do |menu|
-      menu.choice 'Create Data'
-      menu.choice 'Remove Data'
-      menu.choice 'Update Data'
-      menu.choice 'Delete Data'
+  def show_crud_options(option)
+    @prompt.select("About the #{option}... Choose what you want to do..") do |menu|
+      menu.choice 'Create Data', :create
+      menu.choice 'Remove Data', :remove
+      menu.choice 'Update Data', :update
+      menu.choice 'Delete Data', :delete
+    end
+  end
+
+  def ask_storage_data
+    prompt.collect do
+      key(:seller).ask('Seller?', default: 'Standart_Seller')
+      key(:product_id).ask('Product ID?', convert: :int)
+      key(:quantity).ask('Quantity?', convert: :int)
+    end
+  end
+
+  def ask_product_data
+    prompt.collect do
+      key(:id).ask('Product ID?', convert: :int)
+      key(:description).ask('Description?')
+      key(:price).ask('Price?', convert: :float)
+      key(:cost).ask('Cost?', convert: :float)
     end
   end
 
