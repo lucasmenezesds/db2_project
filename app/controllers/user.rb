@@ -1,5 +1,4 @@
 require_relative '../../lib/crud_data'
-require_relative '../../app/models/db_connector'
 
 class User < CRUDData
 
@@ -10,13 +9,13 @@ class User < CRUDData
 
   def create(received_hash)
     user_type = check_if_data_is_valid(received_hash, :user_type)
-    check_permission(user_type)
+    # check_permission(user_type)
     name = check_if_data_is_valid(received_hash, :name)
     password = check_if_data_is_valid(received_hash, :password)
 
     puts "Creating the User #{name}"
     # TODO: Query atualizada verificar que as informações estão sendo enviadas corretamente :1 = Usuario, :2 = Perfil, :3 = Senha.
-    insert_sql = 'create user :1 identified by :3 profile :2'
+    insert_sql = 'create user :1 identified by :2'
     insert_stmt = @conn.prepare_statement(insert_sql)
     insert_stmt.set_string 1, name
     insert_stmt.set_string 2, password
@@ -30,8 +29,8 @@ class User < CRUDData
     insert_stmt.close unless insert_stmt.nil?
   end
 
-  def read(name, user_type)
-    check_permission(user_type)
+  def read(name)
+    # check_permission(@conn, @current_user, role)
 
     # TODO: Query atualizada tinha uma virgula fora do lugar
     query_part = if name.nil?
@@ -69,26 +68,10 @@ class User < CRUDData
     query_stmt.close unless query_stmt.nil?
   end
 
-  def delete
-
-    # Helpers to call our PL/SQL package
-    # PLSQL_BLOCK_FUNCTION_CALL = <<EOF
-    #   begin
-    #     :1 := emp_pack.get_employee_name(:2);
-    #   end;
-    # EOF
-    #
-    #
-    # PLSQL_BLOCK_PROCEDURE_CALL = <<EOF
-    #   begin
-    #     emp_pack.delete_department(:1);
-    #   end;
-    # EOF
-
+  def delete(received_id)
     # TODO: Query atualizada
-    puts 'drop user :1'
-    delete_stmt = conn.prepare_call PLSQL_BLOCK_PROCEDURE_CALL
-    delete_stmt.set_int 1, 281
+    delete_stmt = conn.prepare_call 'drop user :1'
+    delete_stmt.set_int 1, received_id
     delete_stmt.execute_update
     @conn.commit
   rescue

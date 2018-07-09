@@ -1,0 +1,3 @@
+class ConvenienceFlow
+
+end
