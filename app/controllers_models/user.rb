@@ -70,7 +70,7 @@ class User < CRUDData
 
   def delete(received_id)
     # TODO: Query atualizada
-    delete_stmt = conn.prepare_call 'drop user :1'
+    delete_stmt = conn.prepare_statement 'drop user :1'
     delete_stmt.set_int 1, received_id
     delete_stmt.execute_update
     @conn.commit

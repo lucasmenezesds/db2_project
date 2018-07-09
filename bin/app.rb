@@ -1,6 +1,7 @@
 require 'active_record'
 require_relative '../app/views/menu'
 require_relative '../lib/jdbc_connection'
+require_relative '../app/controllers_models/convenience_flow'
 
 begin
   db_config = YAML::load(File.open('../config/database.yml'))
@@ -15,12 +16,13 @@ begin
   passwd = login_data[:password]
 
   conn = OracleConnection.create(user, passwd, url)
-  puts conn.inspect
+  # puts conn.inspect
 
   loop do
     action = menu.loop_of_actions
     break if action == :quit
-    # TODO: flow
+    conv_flow = ConvenienceFlow.new(conn)
+    conv_flow.run_it(action)
   end
 
   menu.show_farewell
