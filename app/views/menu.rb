@@ -34,7 +34,7 @@ class Menu
   def show_crud_options(option)
     @prompt.select("About the #{option}... Choose what you want to do..") do |menu|
       menu.choice 'Create Data', :create
-      menu.choice 'Remove Data', :remove
+      menu.choice 'Read Data', :read
       menu.choice 'Update Data', :update
       menu.choice 'Delete Data', :delete
     end
