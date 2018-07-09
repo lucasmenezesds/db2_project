@@ -3,7 +3,7 @@ CREATE TABLE product (
   id DECIMAL(13) NOT NULL,
   description VARCHAR(255) NOT NULL,
   price FLOAT,
-  cost FLOAT,
+  cost FLOAT DEFAULT 0.0,
   PRIMARY KEY (id)
 );
 
@@ -12,7 +12,7 @@ CREATE SEQUENCE product_seq START WITH 1;
 CREATE TABLE storage (
   product_id DECIMAL(13) NOT NULL,
   quantity INTEGER NOT NULL,
-  seller VARCHAR(255) NOT NULL,
+  seller VARCHAR(255) NOT NULL DEFAULT 'Standart_Seller',
   FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
 );
 
