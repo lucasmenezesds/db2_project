@@ -5,20 +5,6 @@ class ClerkCrud < CRUDData
     @conn = conn
   end
 
-
-  # INSERT INTO CLERK_PRODUCT ( ID, DESCRIPTION, PRICE) VALUES ( :1, :2, :3);
-  #
-  # UPDATE CLERK_PRODUCT SET ID = :1, DESCRIPTION = :2, PRICE = :3 WHERE ID = :1;
-  #
-  # DELETE FROM CLERK_PRODUCT WHERE ID = 1;
-  #
-  # INSERT INTO CLERK_STORAGE ( PRODUCT_ID, QUANTITY) VALUES ( 1, 1);
-  #
-  # UPDATE CLERK_STORAGE SET PRODUCT_ID = :1, QUANTITY = :2 WHERE PRODUCT_ID = :1;
-  #
-  # DELETE FROM CLERK_STORAGE WHERE PRODUCT_ID = 1;
-
-
   def create_product(received_hash)
     id = check_if_data_is_valid(received_hash, :id)
     description = check_if_data_is_valid(received_hash, :description)
