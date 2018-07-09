@@ -4,6 +4,12 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 # Databases on Rails. Build a persistent domain model by mapping database tables to Ruby classes.
 gem 'activerecord', '~> 5.2'
 
+# gem 'ruby-oci8', '~> 2.2', '>= 2.2.5.1'
+gem 'activerecord-oracle_enhanced-adapter'
+# gem 'activerecord-oracle_enhanced-adapter', '~> 1.6', '>= 1.6.7'
+#
+# gem 'ActiveRecord-JDBC'
+
 # A beautiful and powerful interactive command line prompt https://piotrmurach.github.io/tty/
 gem 'tty-prompt', '~> 0.16.1'
 

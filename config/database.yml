@@ -1,0 +1,8 @@
+# config/database.yml
+adapter: jdbc
+driver: oracle
+hostname: localhost
+port: 1521
+database: XE
+url: jdbc:oracle:thin:@localhost:1521:XE
+
