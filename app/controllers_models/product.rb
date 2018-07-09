@@ -11,9 +11,9 @@ class Product < CRUDData
     price = check_if_data_is_valid(received_hash, :price)
     cost = check_if_data_is_valid(received_hash, :cost)
 
-    puts "Creating the User #{name}"
-    # TODO: FIX QUERY
-    insert_sql = 'create product :1 identified by :2'
+    puts "Creating a Product #{name}"
+    # TODO: CHECK QUERY
+    insert_sql = 'INSERT INTO PRODUCT ( ID, DESCRIPTION, PRICE, COST) VALUES ( :1, :2, :3, :4)'
     insert_stmt = @conn.prepare_statement(insert_sql)
     insert_stmt.set_int 1, id
     insert_stmt.set_string 2, description
@@ -37,7 +37,7 @@ class Product < CRUDData
                    ''
                  end
 
-    select_sql = "select USERNAME from dba_users #{query_part}"
+    select_sql = "select * from dba_users #{query_part}"
     select_stmt = @conn.create_statement
     rset = select_stmt.execute_query select_sql
     while rset.next
@@ -58,12 +58,12 @@ class Product < CRUDData
     cost = check_if_data_is_valid(received_hash, :cost)
 
     # TODO: FIX QUERY
-    sql_query = 'alter product :1 identified by :3 profile :2'
+    sql_query = 'UPDATE PRODUCT SET ID = :1 DESCRIPTION = :2,PRICE = :3,COST = :4 WHERE ID = :1'
     query_stmt = @conn.prepare_statement(sql_query)
-    query_stmt.set_string 1, id
+    query_stmt.set_int 1, id
     query_stmt.set_string 2, description
-    query_stmt.set_string 3, price
-    query_stmt.set_string 4, cost
+    query_stmt.set_float 3, price
+    query_stmt.set_float 4, cost
     query_stmt.execute
     @conn.commit
   rescue
@@ -75,7 +75,7 @@ class Product < CRUDData
 
   def delete(received_id)
     # TODO: CHECK QUERY
-    delete_stmt = conn.prepare_call 'drop product :1'
+    delete_stmt = conn.prepare_statement 'DELETE FROM PRODUCT WHERE ID = :1'
     delete_stmt.set_int 1, received_id
     delete_stmt.execute_update
     @conn.commit
@@ -85,7 +85,4 @@ class Product < CRUDData
   ensure
     delete_stmt.close unless delete_stmt.nil?
   end
-
-  private
-
 end
