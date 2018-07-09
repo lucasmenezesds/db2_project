@@ -11,7 +11,7 @@ class CRUDData
   end
 
   # TODO: ver como que vou fazer pra checar
-  # SELECT * FROM USER_SYS_PRIVS; checa privilegios de usuario.
+  # SELECT * FROM DBA_TAB_PRIVS; checa privilegios de usuario.
   # SELECT * FROM DBA_ROLE_PRIVS; checa privilegios de perfil.
   def check_permission(user_type)
     user_type
