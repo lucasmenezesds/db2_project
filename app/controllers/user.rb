@@ -16,7 +16,7 @@ class User < CRUDData
 
     puts "Creating the User #{name}"
     # TODO: FIX QUERY
-    insert_sql = 'insert into departments values (:1, :2, NULL, NULL)'
+    insert_sql = 'create user :1 identified by 'senha' profile :2'
     insert_stmt = @conn.prepare_statement(insert_sql)
     insert_stmt.set_string 1, name
     insert_stmt.set_string 2, password
@@ -40,7 +40,7 @@ class User < CRUDData
                    ''
                  end
 
-    select_sql = "select USERNAME, from dba_users #{query_part}"
+    select_sql = "select USERNAME from dba_users #{query_part}"
     select_stmt = @conn.create_statement
     rset = select_stmt.execute_query select_sql
     while rset.next
@@ -56,7 +56,7 @@ class User < CRUDData
 
   def update(username, role)
     # TODO: FIX QUERY
-    sql_query = 'insert into departments values (:1, :2, NULL, NULL)'
+    sql_query = 'alter user :1 identified by 'new_senha' profile :2'
     query_stmt = @conn.prepare_statement(sql_query)
     query_stmt.set_string 1, username
     query_stmt.set_string 2, role
@@ -86,7 +86,7 @@ class User < CRUDData
     # EOF
 
     # TODO: FIX QUERY
-    puts '4. Deleting department 281 from the DEPARTMENTS table'
+    puts 'drop user :1'
     delete_stmt = conn.prepare_call PLSQL_BLOCK_PROCEDURE_CALL
     delete_stmt.set_int 1, 281
     delete_stmt.execute_update
