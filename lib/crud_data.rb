@@ -1,5 +1,6 @@
 class CRUDData
 
+  # TODO: check it
   def check_if_data_is_valid(received_hash, key)
     fetched_data = received_hash.fetch(key, nil)
 
@@ -11,11 +12,11 @@ class CRUDData
 
   # TODO: ver como que vou fazer pra checar
   def check_permission(user_type)
-
+    user_type
   end
 
   def get_current_permissions
-
+    1
   end
 
 

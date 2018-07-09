@@ -20,7 +20,7 @@ begin
   loop do
     action = menu.loop_of_actions
     break if action == :quit
-
+    # TODO: flow
   end
 
   menu.show_farewell
