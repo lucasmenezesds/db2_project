@@ -1,9 +1,7 @@
 -- Creating and configuring roles (2)
 CREATE ROLE clerk; -- ATENDENTE
-GRANT SELECT ON BOCATO.clerk_product TO clerk;
-GRANT SELECT ON BOCATO.clerk_storage TO clerk;
-GRANT INSERT, UPDATE ON BOCATO.product TO clerk;
-GRANT INSERT, UPDATE ON BOCATO.storage TO clerk;
+GRANT SELECT, INSERT, UPDATE ON BOCATO.clerk_product TO clerk;
+GRANT SELECT, INSERT, UPDATE ON BOCATO.clerk_storage TO clerk;
 GRANT SELECT ON BOCATO.PRODUCT_SEQ TO clerk;
 
 CREATE ROLE manager; -- GERENTE
