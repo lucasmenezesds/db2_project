@@ -23,7 +23,7 @@ class ConvenienceFlow
     when :user
       puts 'user'
     when :clerk
-      puts 'clerk'
+      clerk_steps
     when :quit
       puts 'quit'
     else
