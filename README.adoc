@@ -1,1 +1,16 @@
 = 'Database 2' Project for College
+
+== How to run the project
+
+* Set the database with the script on `data/scripts`
+
+* Set the database infos on `config/database.yml`
+
+* Install the gems
+
+    `jruby -S bundle install`
+
+* Run the project
+
+    `jruby bin/app.rb`
+
