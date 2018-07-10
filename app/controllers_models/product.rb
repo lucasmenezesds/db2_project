@@ -34,9 +34,9 @@ class Product < CRUDData
   def read(id)
     # TODO: CHECK QUERY
     query_part = if id.nil?
-                   "WHERE ID=#{id}"
-                 else
                    ''
+                 else
+                   "where id=#{id}"
                  end
 
     select_sql = "select * from product #{query_part}"

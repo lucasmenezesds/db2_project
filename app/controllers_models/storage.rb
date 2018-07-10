@@ -30,9 +30,9 @@ class Storage < CRUDData
   def read(id)
     # TODO: CHECK QUERY
     query_part = if id.nil?
-                   "WHERE PRODUCT_ID=#{id}"
-                 else
                    ''
+                 else
+                   "WHERE PRODUCT_ID=#{id}"
                  end
 
     select_sql = "select * from STORAGE #{query_part}"

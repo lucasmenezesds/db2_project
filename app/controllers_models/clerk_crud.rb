@@ -30,9 +30,9 @@ class ClerkCrud < CRUDData
   def read_product(id)
     # TODO: CHECK QUERY
     query_part = if id.nil?
-                   "WHERE ID=#{id}"
-                 else
                    ''
+                 else
+                   "WHERE ID=#{id}"
                  end
 
     select_sql = "select * from CLERK_PRODUCT #{query_part}"
@@ -107,9 +107,9 @@ class ClerkCrud < CRUDData
   def read_storage(id)
     # TODO: CHECK QUERY
     query_part = if id.nil?
-                   "WHERE PRODUCT_ID=#{id}"
-                 else
                    ''
+                 else
+                   "WHERE PRODUCT_ID=#{id}"
                  end
 
     select_sql = "select * from CLERK_STORAGE #{query_part}"
