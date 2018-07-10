@@ -39,7 +39,7 @@ class Storage < CRUDData
     select_stmt = @conn.create_statement
     rset = select_stmt.execute_query select_sql
     while rset.next
-      puts "    STORAGE [#{rset}]"
+      puts "    STORAGE [PRODUCT_ID: #{rset.getString(1)}, QUANTITY: #{rset.getString(2)}, SELLER: #{rset.getString(3)}]"
     end
   rescue
     puts "\n** Error occured **\n"

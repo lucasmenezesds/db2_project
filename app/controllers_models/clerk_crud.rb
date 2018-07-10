@@ -39,7 +39,7 @@ class ClerkCrud < CRUDData
     select_stmt = @conn.create_statement
     rset = select_stmt.execute_query select_sql
     while rset.next
-      puts "    CLERK PRODUCT [#{rset}]"
+      puts "    CLERK PRODUCT [ID: #{rset.getString(1)}, NAME: #{rset.getString(2)}, PRICE:#{rset.getString(3)}, COST: #{rset.getString(4)}]"
     end
   rescue
     puts "\n** Error occured **\n"
@@ -116,7 +116,7 @@ class ClerkCrud < CRUDData
     select_stmt = @conn.create_statement
     rset = select_stmt.execute_query select_sql
     while rset.next
-      puts "    CLERK STORAGE [#{rset}]"
+      puts "    CLERK STORAGE [PRODUCT_ID: #{rset.getString(1)}, QUANTITY: #{rset.getString(2)}, SELLER: #{rset.getString(3)}]"
     end
   rescue
     puts "\n** Error occured **\n"

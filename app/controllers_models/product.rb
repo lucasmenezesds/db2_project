@@ -43,7 +43,7 @@ class Product < CRUDData
     select_stmt = @conn.create_statement
     rset = select_stmt.execute_query select_sql
     while rset.next
-      puts "    PRODUCT [#{rset}]"
+      puts "    PRODUCT [ID: #{rset.getString(1)}, NAME: #{rset.getString(2)}, PRICE:#{rset.getString(3)}, COST: #{rset.getString(4)}]"
     end
   rescue
     puts "\n** Error occured **\n"
