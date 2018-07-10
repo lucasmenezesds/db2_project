@@ -26,6 +26,10 @@ class OracleConnection
   # Add getters and setters for all attrributes we wish to expose
   attr_reader :user, :passwd, :url, :connection
 
+  def change_schema(schema_name)
+    @conn.create_statement.execute("alter session set current_schema=#{schema_name}")
+  end
+
   def close_connection()
     @conn.close() unless @conn
   end

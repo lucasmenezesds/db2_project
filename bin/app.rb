@@ -4,7 +4,7 @@ require_relative '../lib/jdbc_connection'
 require_relative '../app/controllers_models/convenience_flow'
 
 begin
-  db_config = YAML::load(File.open('../config/database.yml'))
+  db_config = YAML::load(File.open('config/database.yml'))
 
   url = "#{db_config['adapter']}:#{db_config['driver']}:thin:@#{db_config['hostname']}:#{db_config['port']}:#{db_config['database']}"
 
@@ -17,6 +17,7 @@ begin
 
   conn = OracleConnection.create(user, passwd, url)
   # puts conn.inspect
+  conn.change_schema('BD2')
 
   loop do
     action = menu.loop_of_actions
