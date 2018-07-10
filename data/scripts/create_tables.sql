@@ -12,7 +12,7 @@ CREATE SEQUENCE product_seq START WITH 1;
 CREATE TABLE storage (
   product_id DECIMAL(13) NOT NULL,
   quantity INTEGER NOT NULL,
-  seller VARCHAR(255) NOT NULL DEFAULT 'Standart_Seller', -- Adicionado default para fazer inserts na tabela via View
+  seller VARCHAR(255) DEFAULT 'Standart_Seller' NOT NULL,
   FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
 );
 
