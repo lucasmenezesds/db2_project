@@ -1,0 +1,14 @@
+= Order to run the scripts on the database
+
+*Using some IDE like DataGrip or something similar,
+connect to the database, select the schema,
+copy all the content of each file from the 'script' folder,
+then paste on the tool and execute it.*
+
+*Do it based on the order listed below*
+
+. 'create_tables.sql'
+. 'create_roles.sql'
+. 'create_and_configure_users.sql'
+. 'populate_tables.sql'
+. 'create_triggers_and_logging.sql'

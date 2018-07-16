@@ -1,7 +1,7 @@
 require 'active_record'
 require_relative '../app/views/menu'
 require_relative '../lib/jdbc_connection'
-require_relative '../app/controllers_models/convenience_flow'
+require_relative '../app/controllers/convenience_flow'
 
 begin
   db_config = YAML::load(File.open('config/database.yml'))

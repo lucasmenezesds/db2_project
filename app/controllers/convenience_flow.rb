@@ -1,8 +1,10 @@
-require_relative '../../app/views/menu'
-require_relative 'audit'
-require_relative 'product'
-require_relative 'storage'
-require_relative 'user'
+require_relative '../views/menu'
+require_relative '../models/audit'
+require_relative '../models/product'
+require_relative '../models/storage'
+require_relative '../models/clerk_product'
+require_relative '../models/clerk_storage'
+require_relative '../models/user'
 
 class ConvenienceFlow
 
